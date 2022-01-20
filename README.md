@@ -20,16 +20,20 @@ your own project. See `project.clj` and each namespace for details.
 
 First add this project as a dependency.
 
-```
+```clojure
+;; leiningen
 [org.clojars.threatgrid-clojars/trapperkeeper-clj-http "..."]
+;; Clojure CLI
+{org.clojars.threatgrid-clojars/trapperkeeper-clj-http {:mvn/version "..."}}
 ```
 
 Now audit your codebase for any usages of `clj-http.client/request`. Decide which
 services are the best place to "own" this usage, and add a dependency to `ThreatgridCljHttpService`.
 
-```
-(defservice foo Foo
-  [:ThreatgridCljHttpService client-request]
+```clojure
+(tk/defservice foo
+  Foo
+  [[:ThreatgridCljHttpService client-request]]
   ...)
 ```
 
@@ -40,14 +44,14 @@ instead of `clj-http.client/request`.
 In production, you want `client-request` to be exactly `clj-http.client/request`. This is exactly
 what `clj-http-service` does, so add the following to your production bootstrap.cfg:
 
-```
+```cfg
 # production
 threatgrid.trapperkeeper.clj-http-service/clj-http-service
 ```
 
 During testing, use the following service to enable fake routes.
 
-```
+```cfg
 # testing
 threatgrid.trapperkeeper.clj-http-fake-service/clj-http-fake-service
 ```
@@ -60,6 +64,9 @@ See the tests in `threatgrid.trapperkeeper.clj-http-fake-service-test` for examp
 of specifying fake routes.
 
 ## Development
+
+See the `deploy` step of the Actions workflow for how to deploy. Ensure the required secrets
+are in place.
 
 ## License
 
