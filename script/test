@@ -1,0 +1,3 @@
+#!/bin/bash
+# Arguments: https://github.com/cognitect-labs/test-runner#invoke-with-clojure--m-clojuremain
+clojure -M:test:runner "$@"

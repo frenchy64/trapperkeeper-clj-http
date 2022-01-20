@@ -1,0 +1,36 @@
+#!/bin/bash
+
+set -e
+
+REPO='git@github.com:frenchy64/fully-satisfies.git'
+
+CURRENT_VERSION=`lein pprint --no-pretty -- :version`
+if [ -z $CURRENT_VERSION ]; then
+  echo "Current version not set"
+  exit 1
+fi
+
+./scripts/gen-doc
+mkdir -p tmp
+cd tmp
+if [ ! -d gh-pages ]; then
+  if [ "$GITHUB_ACTIONS" == "true" ]; then
+    echo "Missing gh-pages clone"
+    exit 1
+  else
+    git clone "$REPO" gh-pages
+  fi
+fi
+cd gh-pages
+git checkout gh-pages || git checkout --orphan gh-pages
+git reset --hard
+if git ls-remote --exit-code --heads "$REPO" gh-pages ; then
+  git pull -f origin gh-pages
+fi
+rm -fr latest
+#https://askubuntu.com/a/86891
+cp -a ../../target/doc/. latest
+cp -a ../../target/doc/. "$CURRENT_VERSION"
+git add .
+git commit --allow-empty -m "Docs for $CURRENT_VERSION"
+git push origin --set-upstream gh-pages
