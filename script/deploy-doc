@@ -2,7 +2,7 @@
 
 set -e
 
-REPO='git@github.com:frenchy64/fully-satisfies.git'
+REPO='git@github.com:frenchy64/trapperkeeper-clj-http.git'
 
 CURRENT_VERSION=`lein pprint --no-pretty -- :version`
 if [ -z $CURRENT_VERSION ]; then
