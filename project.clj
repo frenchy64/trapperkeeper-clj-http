@@ -82,7 +82,7 @@
                   ["change" "version" "leiningen.release/bump-version" "release"]
                   ["vcs" "commit"]
                   ["vcs" "tag" "--no-sign"]
-                  ["shell" "./scripts/deploy-doc"]
+                  ["shell" "./script/deploy-doc"]
                   ["deploy" "release"]
                   ["change" "version" "leiningen.release/bump-version"]
                   ["vcs" "commit"]

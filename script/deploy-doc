@@ -10,7 +10,7 @@ if [ -z $CURRENT_VERSION ]; then
   exit 1
 fi
 
-./scripts/gen-doc
+./script/gen-doc
 mkdir -p tmp
 cd tmp
 if [ ! -d gh-pages ]; then
