@@ -15,6 +15,10 @@ in test suites.
 
 ## Usage
 
+- [Latest API Documentation](https://frenchy64.github.io/trapperkeeper-clj-http/latest)
+  - For a specific version, eg., [1.0.0](https://frenchy64.github.io/trapperkeeper-clj-http/1.0.0)
+
+
 Note: This project has many optional dependencies that you must declare yourself in
 your own project. See `project.clj` and each namespace for details.
 
