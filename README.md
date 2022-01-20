@@ -21,7 +21,7 @@ your own project. See `project.clj` and each namespace for details.
 First add this project as a dependency.
 
 ```
-[org.clojars.threatgrid/trapperkeeper-clj-http "..."]
+[org.clojars.threatgrid-clojars/trapperkeeper-clj-http "..."]
 ```
 
 Now audit your codebase for any usages of `clj-http.client/request`. Decide which
